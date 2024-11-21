@@ -28,3 +28,13 @@ def get_mask_account(account_number: Union[int]) -> str:
 
 print(get_mask_account(test_account))
 
+a = 2
+b = 3
+c = 4
+d = 5
+def summ_abcd(a, b, c, d):
+    return a + b + c + d
+
+print(summ_abcd(a, b, c, d))
+
+ab = 2
