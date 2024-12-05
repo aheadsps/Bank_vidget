@@ -27,3 +27,4 @@ def get_mask_account(account_number: Union[int]) -> str:
 
 
 #print(get_mask_account(test_account))
+#правочка
