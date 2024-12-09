@@ -1,4 +1,4 @@
-def filter_by_state(dictionaries: list[dict], state="EXECUTED") -> list[dict]:
+def filter_by_state(dictionaries: list[dict], state: str = "EXECUTED") -> list[dict]:
     """Функция, которая принимает список словарей с параметрами, и на основе значения state возвращет список словарей
     только с нужным значением"""
     result_list = []
