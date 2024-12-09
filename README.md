@@ -34,6 +34,20 @@ curl -sSL https://install.python-poetry.org | python3 - --git https://github.com
 Для установки и запуска проекта, необходим [Python](https://www.python.org/) v3.13+.
 
 ### Установка зависимостей
+Зависимости используемые в проекте:
+```Python
+[tool.poetry.dependencies]
+python = "^3.13"
+requests = "^2.32.3"
+
+
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.1.1"
+isort = "^5.13.2"
+black = "^24.10.0"
+mypy = "^1.13.0"
+```
+
 Через команду в терминале PyCharm инициируйте установку зависимостей от библиотеки requests и Линтеров.
    (Установка производится на основе файла pyproject.toml)
 ```
