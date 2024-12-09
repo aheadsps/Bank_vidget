@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "new-ficha-1-0"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "Widget for bank"
+authors = ["Maksim Boykov <mboykov6@gmail.com>"]
 readme = "README.md"
 packages = [{include = "new_ficha_1"}]
 
@@ -16,6 +16,10 @@ flake8 = "^7.1.1"
 isort = "^5.13.2"
 black = "^24.10.0"
 mypy = "^1.13.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
 
 [build-system]
 requires = ["poetry-core"]
