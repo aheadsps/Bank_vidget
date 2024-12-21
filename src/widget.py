@@ -1,3 +1,5 @@
+from typing import Optional
+
 from src.masks import get_mask_account, get_mask_card_number
 
 # test_input_string = str(input())
@@ -22,15 +24,17 @@ def mask_account_card(str_account_card: str) -> str:
 # test_date_input = str(input())
 
 
-def get_date(date_and_time_str: str) -> str:
+def get_date(date_and_time_str: str) -> Optional[str]:
     """функция, которая принимает строку в формате "2024-03-11T02:26:18.671407"
     и возвращает строку в формате "ДД.ММ.ГГГГ" ( "11.03.2024" )."""
     try:
-        if len(date_and_time_str) == 26 and date_and_time_str.startswith('20'):
+        if len(date_and_time_str) == 26 and date_and_time_str.startswith("20"):
             date_mask = f"{date_and_time_str[8:10]}.{date_and_time_str[5:7]}.{date_and_time_str[0:4]}"
             dd_mm_gg_masks = f'"ДД.ММ.ГГГГ" ( "{date_mask}" )'
             return dd_mm_gg_masks
+        return None
     except KeyError:
         raise Exception("входящее значение неверно")
+
 
 # print(get_date(test_date_input))

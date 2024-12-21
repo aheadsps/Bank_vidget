@@ -16,13 +16,14 @@ def sort_by_date(dictionaries: list[dict], order: bool = True) -> list[dict]:
     result = []
     try:
         for dictionary in dictionaries:
-            if dictionary["date"].startswith('20') and len(dictionary["date"]) == 26:
+            if dictionary["date"].startswith("20") and len(dictionary["date"]) == 26:
                 result.append(dictionary)
     except KeyError:
         raise Exception("список словарей неверен")
     else:
         result = sorted(result, key=lambda x: x["date"], reverse=order)
         return result
+
 
 # test_sort_by_date = [
 #     {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
