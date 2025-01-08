@@ -1,0 +1,11 @@
+INFO:root:my_function ok
+ERROR:root:my_function завершилась с ошибкой: unsupported operand type(s) for +: 'int' and 'str'
+ERROR:root:unsupported operand type(s) for +: 'int' and 'str'
+Traceback (most recent call last):
+  File "/Users/maks/Documents/Проекты/Обучение/Тесты/new_ficha_1.0/src/decorators.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "/Users/maks/Documents/Проекты/Обучение/Тесты/new_ficha_1.0/src/decorators.py", line 48, in my_function
+    return x + y
+           ~~^~~
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+INFO:root:my_function ok
