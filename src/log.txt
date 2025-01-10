@@ -9,3 +9,6 @@ Traceback (most recent call last):
            ~~^~~
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 INFO:root:my_function ok
+INFO:root:my_function успешно выполнена
+INFO:root:my_function ok
+INFO:root:my_function ok
