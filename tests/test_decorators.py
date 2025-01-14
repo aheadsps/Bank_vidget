@@ -1,1 +1,24 @@
-import pytestfrom src.decorators import log, my_function@log()def test_log_is_None_negative_zero_console(capsys):    my_function(1, 0)    captured = capsys.readouterr()    assert captured.err == "my_function завершилась с ошибкой: ZeroDivisionError: Cannot divide by zero. Inputs: (1, 0), {}\n"# @log()# def test_log_is_None_negative_zero_console(capsys):##     try:#         print(my_function(1, 0))#         captured = capsys.readouterr()#         assert captured.out.startswith("my_function error:")#     except ZeroDivisionError as e:#         # Здесь вы можете дополнительно обработать исключение или просто позволить тесту провалиться, если это необходимо для проверки#         captured = capsys.readouterr()#         print(captured.out)  # Вывод ошибки для отладки#         assert "ZeroDivisionError: Cannot divide by zero" in captured.outif __name__ == '__main__':    pytest.main(['-vv'])
+import pytest
+
+from src.decorators import log, my_function
+
+
+@log()
+def test_log_is_None_negative_zero_console(capsys):
+    with pytest.raises(ZeroDivisionError) as excinfo:
+        my_function(1, 0)
+
+    captured = capsys.readouterr()
+
+    # Проверка сообщений об ошибке
+    assert "my_function завершилась с ошибкой: ZeroDivisionError: division by zero" in captured.err
+    assert "Входные параметры функции: (1, 0), {}" in captured.err
+
+    # Проверка текста исключения
+    assert str(excinfo.value) == "division by zero"
+
+
+
+
+if __name__ == "__main__":
+    pytest.main(["-vv"])
