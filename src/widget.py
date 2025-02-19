@@ -2,8 +2,6 @@ from typing import Optional
 
 from src.masks import get_mask_account, get_mask_card_number
 
-# test_input_string = str(input())
-
 
 def mask_account_card(str_account_card: str) -> str:
     """функция, которая принимает строку с названием и номером счета, карты
@@ -19,11 +17,6 @@ def mask_account_card(str_account_card: str) -> str:
         raise Exception("входящее значение неверно")
 
 
-# print(mask_account_card(test_input_string))
-#
-# test_date_input = str(input())
-
-
 def get_date(date_and_time_str: str) -> Optional[str]:
     """функция, которая принимает строку в формате "2024-03-11T02:26:18.671407"
     и возвращает строку в формате "ДД.ММ.ГГГГ" ( "11.03.2024" )."""
@@ -35,6 +28,3 @@ def get_date(date_and_time_str: str) -> Optional[str]:
         return None
     except KeyError:
         raise Exception("входящее значение неверно")
-
-
-# print(get_date(test_date_input))
