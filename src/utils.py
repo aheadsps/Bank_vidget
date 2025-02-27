@@ -26,25 +26,25 @@ def read_json(file_path: str) -> List[Dict[str, Any]]:
     # Отрабатываем иссключения
     except FileNotFoundError:
         print(f"Файл не найден: {file_path}")
+        return []
     except json.decoder.JSONDecodeError:
         print(f"Ошибка декодирования JSON в файле: {file_path}")
+        return []
     except Exception as e:
         print(f"Произошла ошибка: {e}")
-
-    # Возвращаем пустой список в случае ошибок
-    return []
+        return []
 
 
 def convert_currency_to_rub(transaction: Dict[str, Any]) -> Optional[float]:
     """Функция конвертирует сумму транзакции из USD или EUR в рубли (RUB)"""
 
     # Проверяем, что транзакция содержит необходимые ключи
-    if "amount" not in transaction or "currency" not in transaction:
+    if "amount" not in transaction["operationAmount"] or "currency" not in transaction["operationAmount"]:
         print("Транзакция должна содержать ключи 'amount' и 'currency'")
         return None
 
-    amount = transaction["amount"]
-    currency = transaction["currency"].upper()  # Приводим валюту к верхнему регистру
+    amount = float(transaction["operationAmount"]["amount"])
+    currency = transaction["operationAmount"]["currency"]["code"].upper()  # Приводим валюту к верхнему регистру
 
     # Если валюта уже в рублях, возвращаем сумму без изменений
     if currency == "RUB":
@@ -72,6 +72,7 @@ def convert_currency_to_rub(transaction: Dict[str, Any]) -> Optional[float]:
 
         # Извлекаем курсы валют из ответа
         data = response.json()
+        # print(data)
         if "rates" not in data:
             print("Курсы валют не найдены в ответе API.")
             return None
@@ -81,7 +82,7 @@ def convert_currency_to_rub(transaction: Dict[str, Any]) -> Optional[float]:
         # Конвертируем сумму в рубли
         if currency in exchange_rates:
             rate = exchange_rates[currency]
-            converted_amount = amount * rate  # Конвертируем сумму в рубли
+            converted_amount = amount / rate  # Конвертируем сумму в рубли
             return float(converted_amount)
         else:
             print(f"Курс для валюты {currency} не найден.")
@@ -93,26 +94,8 @@ def convert_currency_to_rub(transaction: Dict[str, Any]) -> Optional[float]:
 
 
 if __name__ == "__main__":
-    # USD
-    transaction_usd = {"amount": 100, "currency": "USD"}
-    converted_amount_usd = convert_currency_to_rub(transaction_usd)
-    if converted_amount_usd is not None:
-        print(f"Сумма в рублях: {converted_amount_usd}")
-
-    # EUR
-    transaction_eur = {"amount": 50, "currency": "EUR"}
-    converted_amount_eur = convert_currency_to_rub(transaction_eur)
-    if converted_amount_eur is not None:
-        print(f"Сумма в рублях: {converted_amount_eur}")
-
-    # RUB
-    transaction_rub = {"amount": 1000, "currency": "RUB"}
-    converted_amount_rub = convert_currency_to_rub(transaction_rub)
-    if converted_amount_rub is not None:
-        print(f"Сумма в рублях: {converted_amount_rub}")
-
-    # Транзакция с неподдерживаемой валютой
-    transaction_gbp = {"amount": 200, "currency": "GBP"}
-    converted_amount_gbp = convert_currency_to_rub(transaction_gbp)
-    if converted_amount_gbp is None:
-        print("Конвертация для GBP не поддерживается.")
+    file_path_total = os.path.join('data', 'operations.json')
+    transactions = read_json(file_path_total)
+    for transact in transactions[1:2]:
+        result = convert_currency_to_rub(transact)
+        print(f"Сумма в рублях: {result}")

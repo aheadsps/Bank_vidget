@@ -2,6 +2,43 @@ import pytest
 
 
 @pytest.fixture
+def positive_transactions_usd():
+    return {
+        "operationAmount": {
+            "amount": "100",
+            "currency": {
+                "name": "USD",
+                "code": "USD"
+            }
+        }
+    }
+
+@pytest.fixture
+def positive_transactions_eur():
+    return {
+        "operationAmount": {
+            "amount": "100",
+            "currency": {
+                "name": "EUR",
+                "code": "EUR"
+            }
+        }
+    }
+
+@pytest.fixture
+def positive_transactions_rub():
+    return {
+        "operationAmount": {
+            "amount": "100",
+            "currency": {
+                "name": "руб.",
+                "code": "RUB"
+            }
+        }
+    }
+
+
+@pytest.fixture
 def mask_card_number_positive():
     return [
         1596837868705199,
