@@ -9,6 +9,7 @@ packages = [{include = "new_ficha_1"}]
 [tool.poetry.dependencies]
 python = "^3.13"
 requests = "^2.32.3"
+python-dotenv = "^1.0.1"
 
 
 [tool.poetry.group.lint.dependencies]
