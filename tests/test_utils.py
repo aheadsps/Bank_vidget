@@ -1,12 +1,12 @@
 import os
-
 import unittest
 from unittest.mock import mock_open, patch
 
 import pytest
 from requests.exceptions import RequestException
 
-from src.utils import convert_currency_to_rub, read_json
+from src.external_api import convert_currency_to_rub
+from src.utils import read_json
 
 
 # Тесты для функции read_json
