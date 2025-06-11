@@ -10,6 +10,8 @@ packages = [{include = "new_ficha_1"}]
 python = "^3.13"
 requests = "^2.32.3"
 python-dotenv = "^1.0.1"
+pandas = "^2.2.3"
+openpyxl = "^3.1.5"
 
 
 [tool.poetry.group.lint.dependencies]
