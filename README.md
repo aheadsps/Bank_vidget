@@ -85,6 +85,12 @@ divide(10, 2)  # Логирование успешного выполнения
 divide(10, 0)  # Логирование исключения ZeroDivisionError
 ```
 
+## Модуль finance_reader.py
+
+* read_csv_transactions: Загружает данные транзакций из CSV в список словарей.
+
+* read_excel_transactions: Импортирует данные транзакций из Excel в список словарей.
+
 ## Тестирование
 Установите библиотеку pytest-cov:
 ```
