@@ -1,8 +1,16 @@
+import os
 import logging
+
+# абсолютный путь к файлу логов
+log_dir = "/Users/anaabramova/PycharmProjects/Bank_vidget/logs"
+log_file = os.path.join(log_dir, "masks.log")
+
+# Создаю директорию, если её нет
+os.makedirs(log_dir, exist_ok=True)
 
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("logs/masks.log")
+file_handler = logging.FileHandler(log_file, encoding="utf-8")
 file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
